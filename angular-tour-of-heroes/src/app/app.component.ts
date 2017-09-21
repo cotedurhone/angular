@@ -1,42 +1,19 @@
 import { Component } from '@angular/core';
-import { Hero } from './hero';
-
-const HEROES: Hero[] = [
-  { id: 11, name: 'Mr. Nice' },
-  { id: 12, name: 'Narco' },
-  { id: 13, name: 'Bombasto' },
-  { id: 14, name: 'Celeritas' },
-  { id: 15, name: 'Magneta' },
-  { id: 16, name: 'RubberMan' },
-  { id: 17, name: 'Dynama' },
-  { id: 18, name: 'Dr IQ' },
-  { id: 19, name: 'Magma' },
-  { id: 20, name: 'Tornado' }
-];
+import { RouterModule } from '@angular/router';
 
 @Component({
-  selector: 'app-root',
-  templateUrl: './app.component.html',
-  styleUrls: ['./app.component.css'],
-  template: `
-  	<h1>{{title}}</h1>
-  	<h2>My Heroes</h2>
-	<ul class="heroes">
-	  <li *ngFor="let hero of heroes" 
-    [class.selected]="hero === selectedHero" 
-    (click)="onSelect(hero)">
-  			<span class="badge">{{hero.id}}</span> {{hero.name}}    <!-- each hero goes here -->
-	  </li>
-	</ul>
-  `
+	selector: 'my-app',
+  	styleUrls: ['./app.component.css'],
+	template: `
+  <h1>{{title}}</h1>
+  <nav>
+    <a routerLink="/dashboard" routerLinkActive="active">Dashboard</a>
+    <a routerLink="/heroes" routerLinkActive="active">Heroes</a>
+  </nav>
+  <router-outlet></router-outlet>
+`,
 })
+
 export class AppComponent {
-  title = 'Tour of Heroes';
-  selectedHero: Hero;
-  heroes = HEROES;
-
-  onSelect(hero: Hero): void {
-    this.selectedHero = hero;
-  }
+	title = 'Tour of Heroes';
 }
-
